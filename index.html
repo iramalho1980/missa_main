@@ -60,770 +60,222 @@
         }
 
         .folders-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .folder-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .folder-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 255, 0, 0.3);
-            border-color: #ffff00;
-        }
-
-        .folder-header {
-            padding: 20px;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 0, 0.1));
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .folder-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 0 0 10px #ffffff;
-        }
-
-        .folder-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .folder-content.expanded {
-            max-height: 500px;
-        }
-
-        .song-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            transition: all 0.2s ease;
-        }
-
-        .song-item:hover {
-            background: rgba(255, 255, 0, 0.1);
-        }
-
-        .song-info {
-            flex: 1;
-        }
-
-        .song-name {
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .song-controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .tone-input {
-            width: 50px;
-            padding: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-            font-family: 'Ubuntu Mono', monospace;
-            text-align: center;
-        }
-
-        .btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Ubuntu Mono', monospace;
-            font-size: 0.8rem;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #ffff00, #ffd700);
-            color: #000000;
-            font-weight: bold;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
-        .ordem-missa {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 25px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-
-        .ordem-missa h2 {
-            color: #ffff00;
-            text-shadow: 0 0 15px #ffff00;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .ordem-list {
-            min-height: 300px;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .ordem-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: move;
-            transition: all 0.2s ease;
-        }
-
-        .ordem-item:hover {
-            background: rgba(255, 255, 0, 0.2);
-            transform: translateX(5px);
-        }
-
-        .ordem-item-info {
-            flex: 1;
-        }
-
-        .ordem-item-name {
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .ordem-item-tone {
-            font-size: 0.8rem;
-            color: #ffff00;
-        }
-
-        .ordem-controls {
-            display: flex;
-            gap: 10px;
-        }
-
-        .ordem-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            max-width: 90%;
-            max-height: 90%;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            max-height: 400px;
             overflow: auto;
-            position: relative;
         }
 
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
+        .folders-section h2 {
+            font-size: 1.8rem;
+            color: #00ffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .folder-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .folder-list li {
+            margin-bottom: 10px;
+        }
+
+        .folder-list a {
+            display: block;
+            padding: 12px 15px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 8px;
             color: #ffffff;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .folder-list a:hover {
+            background: rgba(0, 255, 255, 0.2);
+        }
+
+        .songs-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            max-height: 400px;
+            overflow: auto;
+        }
+
+        .songs-section h2 {
+            font-size: 1.8rem;
+            color: #ff00ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .song-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .song-list li {
+            margin-bottom: 10px;
+        }
+
+        .song-list a {
+            display: block;
+            padding: 12px 15px;
+            background: rgba(255, 0, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .song-list a:hover {
+            background: rgba(255, 0, 255, 0.2);
+        }
+
+        .song-display {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        .song-display h2 {
             font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            color: #00ff00;
+            margin-bottom: 20px;
         }
 
-        .modal-close:hover {
-            color: #ffff00;
-            transform: scale(1.2);
-        }
-
-        .pdf-viewer {
-            width: 100%;
-            height: 70vh;
-            border: none;
+        .song-content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
             border-radius: 10px;
+            white-space: pre-wrap;
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            max-height: 400px;
+            overflow: auto;
         }
 
-        /* Responsividade */
-        @media (max-width: 1024px) {
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
-            
-            .ordem-missa {
-                position: relative;
-                top: 0;
-            }
-        }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .song-display {
+                grid-column: span 1;
             }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .folders-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .song-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .song-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
 
-        @media (max-width: 480px) {
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 2.5rem;
             }
-            
+
             .header p {
                 font-size: 1rem;
             }
-            
-            .modal-content {
-                padding: 20px;
-                margin: 10px;
+
+            .folders-section h2,
+            .songs-section h2 {
+                font-size: 1.5rem;
             }
-        }
 
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+            .folder-list a,
+            .song-list a {
+                font-size: 1rem;
+                padding: 10px 12px;
+            }
 
-        .folder-card {
-            animation: fadeIn 0.5s ease forwards;
-        }
+            .song-display h2 {
+                font-size: 1.7rem;
+            }
 
-        .folder-card:nth-child(even) {
-            animation-delay: 0.1s;
-        }
-
-        .folder-card:nth-child(odd) {
-            animation-delay: 0.2s;
-        }
-
-        /* Drag and Drop */
-        .dragging {
-            opacity: 0.5;
-            transform: rotate(5deg);
-        }
-
-        .drag-over {
-            border-color: #ffff00;
-            background: rgba(255, 255, 0, 0.1);
+            .song-content {
+                font-size: 1rem;
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>🎵 Missa - Gerenciador de Cânticos</h1>
-            <p>Organize e gerencie os cânticos da sua celebração</p>
+            <h1>Missa - Gerenciador de Cânticos</h1>
+            <p>Seu companheiro digital para a liturgia</p>
         </header>
 
-        <div class="main-content">
-            <div class="folders-section" id="foldersSection">
-                <!-- Pastas serão carregadas aqui via JavaScript -->
+        <main class="main-content">
+            <section class="folders-section">
+                <h2>Pastas de Cânticos</h2>
+                <ul class="folder-list">
+                    <li><a href="#">Entrada</a></li>
+                    <li><a href="#">Ato Penitencial</a></li>
+                    <li><a href="#">Glória</a></li>
+                    <li><a href="#">Aclamação</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Santo</a></li>
+                    <li><a href="#">Cordeiro</a></li>
+                    <li><a href="#">Comunhão</a></li>
+                    <li><a href="#">Pós-Comunhão</a></li>
+                    <li><a href="#">Final</a></li>
+                </ul>
+            </section>
+
+            <section class="songs-section">
+                <h2>Cânticos da Pasta</h2>
+                <ul class="song-list">
+                    <li><a href="#">Cântico 1</a></li>
+                    <li><a href="#">Cântico 2</a></li>
+                    <li><a href="#">Cântico 3</a></li>
+                    <li><a href="#">Cântico 4</a></li>
+                    <li><a href="#">Cântico 5</a></li>
+                    <li><a href="#">Cântico 6</a></li>
+                    <li><a href="#">Cântico 7</a></li>
+                    <li><a href="#">Cântico 8</a></li>
+                    <li><a href="#">Cântico 9</a></li>
+                    <li><a href="#">Cântico 10</a></li>
+                </ul>
+            </section>
+        </main>
+
+        <section class="song-display">
+            <h2>Cântico Selecionado</h2>
+            <div class="song-content">
+                <p>Letra do cântico selecionado aparecerá aqui. Este é um espaço para exibir o conteúdo completo do cântico, permitindo que os usuários o leiam e acompanhem durante a missa. O texto pode ser longo e, por isso, é importante que este quadro tenha barras de rolagem para facilitar a visualização de todo o conteúdo.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
             </div>
+        </section>
 
-            <div class="ordem-missa">
-                <h2>📋 Ordem da Missa</h2>
-                <div class="ordem-list" id="ordemList">
-                    <p style="text-align: center; color: rgba(255,255,255,0.6); margin-top: 100px;">
-                        Arraste os cânticos aqui para montar a ordem da missa
-                    </p>
-                </div>
-                <div class="ordem-actions">
-                    <button class="btn btn-primary" onclick="salvarOrdem()">💾 Salvar</button>
-                    <button class="btn btn-secondary" onclick="limparOrdem()">🗑️ Limpar</button>
-                    <button class="btn btn-secondary" onclick="carregarOrdem()">📂 Carregar</button>
-                </div>
-            </div>
-        </div>
+        <footer class="footer">
+            <p>&copy; 2025 Missa - Gerenciador de Cânticos. Todos os direitos reservados.</p>
+        </footer>
     </div>
-
-    <!-- Modal para visualizar PDFs -->
-    <div class="modal" id="pdfModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="fecharModal()">&times;</button>
-            <iframe class="pdf-viewer" id="pdfViewer"></iframe>
-        </div>
-    </div>
-
-    <script>
-        // Dados das pastas e cânticos
-        const foldersData = {
-            "1 - Entrada": [
-                "Entrada - Eu e Minha Casa Serviremos ao Senhor.pdf",
-                "a_biblia_e_a_palavra_de_deus.pdf",
-                "bom_pastor.pdf",
-                "coração_santo.pdf",
-                "cristo_ressucitou_aleluia.pdf",
-                "deixa_a_luz_do_ceu_entrar.pdf",
-                "eis_me_aqui_senhor.pdf",
-                "esatremos_aqui_reunidos.pdf",
-                "faco_novas_todas_as_coisas.pdf",
-                "hosana_hey_hosana_ha.pdf",
-                "por_entre_aclamações.pdf",
-                "por_sua_morte.pdf",
-                "porque_ele_vive.pdf",
-                "senhor_quem_entrara.pdf",
-                "te_amarei.pdf",
-                "toda_biblia_e_comunicacao.pdf",
-                "tu_es_a_razao_da_jornada.pdf",
-                "vem_louvar.pdf"
-            ],
-            "2 - Ato penitencial": [
-                "Ato Penitencial - Senhor, Piedade.pdf",
-                "conheco_um_coracao.pdf",
-                "coracoes_arrependidos.pdf",
-                "kyrie_eleison_jmj.pdf",
-                "pelos_pecados_senhor_piedade_de_nos.pdf",
-                "perdao_senhor.pdf",
-                "renovame.pdf",
-                "renovame_ii.pdf",
-                "senhor_que_viestes_salvar_kirie_elleisson.pdf",
-                "senhor_tende_piedade_de_nos.pdf",
-                "senhor_tende_piedade_perdoai_nossa_culpa.pdf"
-            ],
-            "3 - Gloria": [
-                "Glória - Eliana Ribeiro.pdf",
-                "a_ele_seja_a_gloria.pdf",
-                "gloria_a_deus_nas_alturas.pdf",
-                "gloria_a_deus_nas_alturas__rock_balada.pdf",
-                "gloria_ao_pai_criador.pdf"
-            ],
-            "4 - Aclamação ao evangelho": [
-                "a_minhalma_abrirei.pdf",
-                "a_vossa_palavra_senhor.pdf",
-                "aleluia_como_o_pai_me_amou.pdf",
-                "buscai_primeiro_o_reino_de_deus.pdf",
-                "como_sao_belos.pdf",
-                "eu_vim_para_escutar.pdf",
-                "palavra_de_salvacao.pdf",
-                "quando_estamos_unidos.pdf",
-                "que_alegria_cristo_ressurgiu.pdf",
-                "vai_falar_no_evangelho.pdf",
-                "vinde_espirito_de_deus.pdf"
-            ],
-            "5 - Ofertório": [
-                "a_mesa_santa_que_preparamos.pdf",
-                "de_maos_estendidas.pdf",
-                "meu_coracao_eh_para_ti.pdf",
-                "minha_vida_tem_sentido.pdf",
-                "muitos_graos_de_trigo.pdf",
-                "ofertas_singelas.pdf",
-                "sabes_senhor.pdf",
-                "um_coracao_para_amar.pdf"
-            ],
-            "6 - Santo": [
-                "hosana_eh.pdf",
-                "hosana_no_alto_ceu.pdf",
-                "o_senhor_eh_santo.pdf",
-                "santo_santo_e.pdf",
-                "senhor_deus_do_universo.pdf"
-            ],
-            "7 - Comunhão": [
-                "a_barca.pdf",
-                "a_ti_meu_deus.pdf",
-                "antes_da_morte_e_ressurreicao.pdf",
-                "cantar_a_beleza_da_vida.pdf",
-                "como_es_lindo.pdf",
-                "conheço_um_coração.pdf",
-                "da_cepa_brotou_a_rama.pdf",
-                "desamarrem_as_sandalias.pdf",
-                "estas_entre_nos.pdf",
-                "este_pranto_em_minhas_maos.pdf",
-                "eu_navegarei.pdf",
-                "eu_quis_comer_esta_ceia_agora.pdf",
-                "eu_vim_para_que_todos_tenham_vida.pdf",
-                "pelos_prados.pdf",
-                "procuro_abrigo_nos_coracoes.pdf",
-                "quando_teu_pai_revelou.pdf",
-                "quem_nos_separara.pdf",
-                "sacramento_da_comunhao.pdf",
-                "sim_eu_quero.pdf",
-                "sonda_me.pdf",
-                "vem_eu_mostrarei.pdf",
-                "vou_cantar_teu_amor.pdf"
-            ],
-            "8 - Ação de Graças": [
-                "deus_esta_aqui.pdf",
-                "e_impossivel_nao_crer_em_ti.pdf",
-                "espirito_santo.pdf",
-                "obrigado_senhor.pdf"
-            ],
-            "9 - Final": [
-                "a_alegria_esta_no_coracao.pdf",
-                "como_o_pai_me_enviou.pdf",
-                "cristo_eh_a_felicidade.pdf",
-                "deixa_luz_do_ceu_entrar.pdf",
-                "hoje_e_tempo_de_louvar.pdf",
-                "pelas_estradas_da_vida.pdf",
-                "segura_na_mao_de_deus.pdf",
-                "tomado_pela_mao.pdf",
-                "tu_es_razao_jornada.pdf"
-            ],
-            "10 - Abraço de Paz": [
-                "esteja_sempre_com_voce.pdf",
-                "irmao_minha_paz_eu_te_dou.pdf",
-                "paz_paz_de_cristo.pdf"
-            ],
-            "11 - Canticos Marianos": [
-                "a_escolhida.pdf",
-                "ave_cheia_de_graca.pdf",
-                "imaculada_maria_de_deus.pdf",
-                "maria_de_nazare.pdf",
-                "santa_mae_maria.pdf",
-                "santa_maria_vem.pdf"
-            ],
-            "12 - Louvor e meditação": [
-                "Desamarrem_as_sandálias.pdf",
-                "a_alegria_esta_no_coracao.pdf",
-                "a_nos_descei_divina_luz.pdf",
-                "agua_viva.pdf",
-                "amar_como_jesus_amou.pdf",
-                "bate_o_sino.pdf",
-                "eu_louvarei.pdf",
-                "eu_quero_um_rio.pdf",
-                "louvado_seja_o_meu_senhor.pdf",
-                "meu_mestre__a_minha_vida_e_do_mestre.pdf",
-                "noite_feliz.pdf",
-                "noites_traicoeiras.pdf",
-                "oracao_da_familia.pdf",
-                "oracao_de_sao_francisco.pdf",
-                "podes_reinar.pdf",
-                "quao_grande_es_tu.pdf",
-                "segura_na_mao_de_deus.pdf",
-                "tao_sublime.pdf",
-                "vou-cantar-teu-amor.pdf"
-            ],
-            "13 - Diversos": [
-                "podes_reinar.pdf",
-                "prova_de_amor.pdf"
-            ],
-            "14 - Salmos": [
-                "salmo 137.pdf"
-            ],
-            "15 - Abraço de Paz": [
-                "quero_te_dar_a_paz.pdf"
-            ],
-            "16 - Cordeiro": [
-                "cordeiro_de_deus.pdf"
-            ]
-        };
-
-        let ordemMissa = [];
-
-        // Inicializar a aplicação
-        document.addEventListener('DOMContentLoaded', function() {
-            carregarPastas();
-            carregarOrdem();
-        });
-
-        // Carregar pastas e cânticos
-        function carregarPastas() {
-            const foldersSection = document.getElementById('foldersSection');
-            
-            Object.keys(foldersData).forEach(folderName => {
-                const folderCard = document.createElement('div');
-                folderCard.className = 'folder-card';
-                
-                folderCard.innerHTML = `
-                    <div class="folder-header" onclick="toggleFolder('${folderName}')">
-                        <div class="folder-title">📁 ${folderName}</div>
-                    </div>
-                    <div class="folder-content" id="folder-${folderName.replace(/[^a-zA-Z0-9]/g, '')}">
-                        ${foldersData[folderName].map(song => `
-                            <div class="song-item">
-                                <div class="song-info">
-                                    <div class="song-name">${formatSongName(song)}</div>
-                                </div>
-                                <div class="song-controls">
-                                    <input type="text" class="tone-input" placeholder="Tom" maxlength="2">
-                                    <button class="btn btn-secondary" onclick="abrirCantico('${folderName}', '${song}')">👁️ Ver</button>
-                                    <button class="btn btn-primary" onclick="adicionarAOrdem('${folderName}', '${song}', this)">➕ Adicionar</button>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                
-                foldersSection.appendChild(folderCard);
-            });
-        }
-
-        // Formatar nome do cântico
-        function formatSongName(filename) {
-            return filename.replace(/\.pdf$|\.jpeg$/i, '').replace(/_/g, ' ');
-        }
-
-        // Toggle pasta
-        function toggleFolder(folderName) {
-            const folderId = 'folder-' + folderName.replace(/[^a-zA-Z0-9]/g, '');
-            const folderContent = document.getElementById(folderId);
-            folderContent.classList.toggle('expanded');
-        }
-
-        // Abrir cântico em popup
-        function abrirCantico(folderName, songName) {
-            const modal = document.getElementById('pdfModal');
-            const pdfViewer = document.getElementById('pdfViewer');
-            
-            // Construir caminho do arquivo
-            const filePath = `/missa_main/Letras/${folderName}/${songName}`;
-            
-            // Para arquivos JPEG, mostrar como imagem
-            if (songName.toLowerCase().endsWith('.jpeg')) {
-                pdfViewer.src = `data:text/html,<html><body style="margin:0;padding:20px;background:#000;display:flex;justify-content:center;align-items:center;"><img src="${filePath}" style="max-width:100%;max-height:100%;object-fit:contain;"></body></html>`;
-            } else {
-                pdfViewer.src = filePath;
-            }
-            
-            modal.classList.add('active');
-        }
-
-        // Fechar modal
-        function fecharModal() {
-            const modal = document.getElementById('pdfModal');
-            modal.classList.remove('active');
-        }
-
-        // Adicionar à ordem da missa
-        function adicionarAOrdem(folderName, songName, button) {
-            const toneInput = button.parentElement.querySelector('.tone-input');
-            const tone = toneInput.value.trim() || '';
-            
-            const item = {
-                id: Date.now(),
-                folder: folderName,
-                song: songName,
-                tone: tone,
-                name: formatSongName(songName)
-            };
-            
-            ordemMissa.push(item);
-            atualizarOrdemMissa();
-            
-            // Feedback visual
-            button.textContent = '✅ Adicionado';
-            button.style.background = '#4CAF50';
-            setTimeout(() => {
-                button.textContent = '➕ Adicionar';
-                button.style.background = '';
-            }, 1500);
-        }
-
-        // Atualizar lista da ordem da missa
-        function atualizarOrdemMissa() {
-            const ordemList = document.getElementById('ordemList');
-            
-            if (ordemMissa.length === 0) {
-                ordemList.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.6); margin-top: 100px;">Arraste os cânticos aqui para montar a ordem da missa</p>';
-                return;
-            }
-            
-            ordemList.innerHTML = ordemMissa.map((item, index) => `
-                <div class="ordem-item" draggable="true" data-index="${index}">
-                    <div class="ordem-item-info">
-                        <div class="ordem-item-name">${item.name}</div>
-                        <div class="ordem-item-tone">${item.tone ? 'Tom: ' + item.tone : 'Sem tom definido'}</div>
-                    </div>
-                    <div class="ordem-controls">
-                        <button class="btn btn-secondary" onclick="abrirCantico('${item.folder}', '${item.song}')">👁️</button>
-                        <button class="btn btn-secondary" onclick="removerDaOrdem(${index})">🗑️</button>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Adicionar eventos de drag and drop
-            adicionarDragAndDrop();
-        }
-
-        // Remover da ordem
-        function removerDaOrdem(index) {
-            ordemMissa.splice(index, 1);
-            atualizarOrdemMissa();
-        }
-
-        // Adicionar funcionalidade de drag and drop
-        function adicionarDragAndDrop() {
-            const items = document.querySelectorAll('.ordem-item');
-            const ordemList = document.getElementById('ordemList');
-            
-            items.forEach(item => {
-                item.addEventListener('dragstart', function(e) {
-                    this.classList.add('dragging');
-                    e.dataTransfer.setData('text/plain', this.dataset.index);
-                });
-                
-                item.addEventListener('dragend', function() {
-                    this.classList.remove('dragging');
-                });
-            });
-            
-            ordemList.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.classList.add('drag-over');
-            });
-            
-            ordemList.addEventListener('dragleave', function() {
-                this.classList.remove('drag-over');
-            });
-            
-            ordemList.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.classList.remove('drag-over');
-                
-                const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'));
-                const dropTarget = e.target.closest('.ordem-item');
-                
-                if (dropTarget && dropTarget.dataset.index) {
-                    const targetIndex = parseInt(dropTarget.dataset.index);
-                    
-                    // Reordenar array
-                    const draggedItem = ordemMissa.splice(draggedIndex, 1)[0];
-                    ordemMissa.splice(targetIndex, 0, draggedItem);
-                    
-                    atualizarOrdemMissa();
-                }
-            });
-        }
-
-        // Salvar ordem
-        function salvarOrdem() {
-            if (ordemMissa.length === 0) {
-                alert('Adicione pelo menos um cântico à ordem da missa antes de salvar.');
-                return;
-            }
-            
-            localStorage.setItem('ordemMissa', JSON.stringify(ordemMissa));
-            
-            // Feedback visual
-            const btn = event.target;
-            const originalText = btn.textContent;
-            btn.textContent = '✅ Salvo!';
-            btn.style.background = '#4CAF50';
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-            }, 2000);
-        }
-
-        // Carregar ordem
-        function carregarOrdem() {
-            const savedOrdem = localStorage.getItem('ordemMissa');
-            if (savedOrdem) {
-                ordemMissa = JSON.parse(savedOrdem);
-                atualizarOrdemMissa();
-                
-                // Feedback visual
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = '✅ Carregado!';
-                btn.style.background = '#4CAF50';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '';
-                }, 2000);
-            } else {
-                alert('Nenhuma ordem salva encontrada.');
-            }
-        }
-
-        // Limpar ordem
-        function limparOrdem() {
-            if (confirm('Tem certeza que deseja limpar a ordem da missa?')) {
-                ordemMissa = [];
-                atualizarOrdemMissa();
-            }
-        }
-
-        // Fechar modal ao clicar fora
-        document.getElementById('pdfModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                fecharModal();
-            }
-        });
-
-        // Atalhos de teclado
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                fecharModal();
-            }
-        });
-    </script>
 </body>
 </html>
 
