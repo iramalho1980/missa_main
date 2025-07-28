@@ -945,9 +945,14 @@
             const fullPath = baseUrl + path;
 
             if (type === 'pdf') {
+                // Usar PDF.js do Google para visualização de PDFs
                 const iframe = document.createElement('iframe');
-                iframe.src = fullPath;
+                iframe.src = `https://docs.google.com/gview?url=${encodeURIComponent(fullPath)}&embedded=true`;
                 iframe.classList.add('file-viewer');
+                iframe.style.width = '100%';
+                iframe.style.height = '70vh';
+                iframe.style.border = 'none';
+                iframe.style.borderRadius = '10px';
                 fileViewerContainer.appendChild(iframe);
             } else if (type === 'jpeg' || type === 'png' || type === 'jpg' || type === 'gif') {
                 const img = document.createElement('img');
@@ -956,9 +961,13 @@
                 img.style.maxHeight = '100%';
                 img.style.display = 'block';
                 img.style.margin = 'auto';
+                img.style.borderRadius = '10px';
+                img.onerror = function() {
+                    fileViewerContainer.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Erro ao carregar a imagem. Tente novamente mais tarde.</p>';
+                };
                 fileViewerContainer.appendChild(img);
             } else {
-                fileViewerContainer.innerHTML = '<p style="color: white;">Formato de arquivo não suportado para visualização.</p>';
+                fileViewerContainer.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">Formato de arquivo não suportado para visualização.</p>';
             }
 
             popupOverlay.style.display = 'flex';
