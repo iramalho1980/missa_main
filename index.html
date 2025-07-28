@@ -387,7 +387,7 @@
             color: #ffffff;
         }
 
-        .pdf-viewer {
+        .file-viewer {
             width: 100%;
             height: 70vh;
             border: none;
@@ -501,11 +501,11 @@
         </div>
     </div>
 
-    <!-- Popup para visualização de PDF -->
+    <!-- Popup para visualização de PDF/Imagem -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
             <div class="popup-close" onclick="closePopup()">×</div>
-            <iframe class="pdf-viewer" id="pdfViewer"></iframe>
+            <div id="fileViewerContainer" style="width: 100%; height: 70vh;"></div>
         </div>
     </div>
 
@@ -530,185 +530,194 @@
             { id: '14 - Salmos', name: '📜 Salmos', order: 16 }
         ];
 
-        // Base URL do GitHub para acessar os PDFs
-        const baseUrl = 'https://github.com/iramalho1980/missa_main/raw/main/Letras/';
+        // Base URL do GitHub para acessar os arquivos
+        const baseUrl = 'https://github.com/iramalho1980/missa_main/raw/main/';
 
-        // Dados dos cânticos (carregados dinamicamente)
+        // Dados dos cânticos (incluindo PDFs e imagens)
         const songData = {
             "1 - Entrada": [
-                "Entrada - Eu e Minha Casa Serviremos ao Senhor",
-                "a_biblia_e_a_palavra_de_deus",
-                "bom_pastor",
-                "coração_santo",
-                "cristo_ressucitou_aleluia",
-                "deixa_a_luz_do_ceu_entrar",
-                "eis_me_aqui_senhor",
-                "esatremos_aqui_reunidos",
-                "faco_novas_todas_as_coisas",
-                "hosana_hey_hosana_ha",
-                "por_entre_aclamações",
-                "por_sua_morte",
-                "porque_ele_vive",
-                "senhor_quem_entrara",
-                "te_amarei",
-                "toda_biblia_e_comunicacao",
-                "tu_es_a_razao_da_jornada",
-                "vem_louvar"
+                { "name": "Entrada - Eu e Minha Casa Serviremos ao Senhor", "type": "pdf", "path": "Letras/1 - Entrada/Entrada - Eu e Minha Casa Serviremos ao Senhor.pdf" },
+                { "name": "a_biblia_e_a_palavra_de_deus", "type": "pdf", "path": "Letras/1 - Entrada/a_biblia_e_a_palavra_de_deus.pdf" },
+                { "name": "bom_pastor", "type": "pdf", "path": "Letras/1 - Entrada/bom_pastor.pdf" },
+                { "name": "coração_santo", "type": "pdf", "path": "Letras/1 - Entrada/coração_santo.pdf" },
+                { "name": "creio", "type": "jpeg", "path": "Letras/1 - Entrada/creio.jpeg" },
+                { "name": "cristo_ressucitou_aleluia", "type": "pdf", "path": "Letras/1 - Entrada/cristo_ressucitou_aleluia.pdf" },
+                { "name": "deixa_a_luz_do_ceu_entrar", "type": "pdf", "path": "Letras/1 - Entrada/deixa_a_luz_do_ceu_entrar.pdf" },
+                { "name": "eis_me_aqui_senhor", "type": "pdf", "path": "Letras/1 - Entrada/eis_me_aqui_senhor.pdf" },
+                { "name": "esatremos_aqui_reunidos", "type": "pdf", "path": "Letras/1 - Entrada/esatremos_aqui_reunidos.pdf" },
+                { "name": "faco_novas_todas_as_coisas", "type": "pdf", "path": "Letras/1 - Entrada/faco_novas_todas_as_coisas.pdf" },
+                { "name": "hosana_hey_hosana_ha", "type": "pdf", "path": "Letras/1 - Entrada/hosana_hey_hosana_ha.pdf" },
+                { "name": "por_entre_aclamações", "type": "pdf", "path": "Letras/1 - Entrada/por_entre_aclamações.pdf" },
+                { "name": "por_sua_morte", "type": "pdf", "path": "Letras/1 - Entrada/por_sua_morte.pdf" },
+                { "name": "porque_ele_vive", "type": "pdf", "path": "Letras/1 - Entrada/porque_ele_vive.pdf" },
+                { "name": "senhor_quem_entrara", "type": "pdf", "path": "Letras/1 - Entrada/senhor_quem_entrara.pdf" },
+                { "name": "te_amarei", "type": "pdf", "path": "Letras/1 - Entrada/te_amarei.pdf" },
+                { "name": "toda_biblia_e_comunicacao", "type": "pdf", "path": "Letras/1 - Entrada/toda_biblia_e_comunicacao.pdf" },
+                { "name": "tu_es_a_razao_da_jornada", "type": "pdf", "path": "Letras/1 - Entrada/tu_es_a_razao_da_jornada.pdf" },
+                { "name": "vem_louvar", "type": "pdf", "path": "Letras/1 - Entrada/vem_louvar.pdf" }
             ],
             "2 - Ato penitencial": [
-                "Ato Penitencial - Senhor, Piedade",
-                "conheco_um_coracao",
-                "coracoes_arrependidos",
-                "kyrie_eleison_jmj",
-                "pelos_pecados_senhor_piedade_de_nos",
-                "perdao_senhor",
-                "renovame",
-                "renovame_ii",
-                "senhor_que_viestes_salvar_kirie_elleisson",
-                "senhor_tende_piedade_de_nos",
-                "senhor_tende_piedade_perdoai_nossa_culpa"
+                { "name": "Ato Penitencial - Senhor, Piedade", "type": "pdf", "path": "Letras/2 - Ato penitencial/Ato Penitencial - Senhor, Piedade.pdf" },
+                { "name": "Senhor que viestes salvar", "type": "jpeg", "path": "Letras/2 - Ato penitencial/Senhor que viestes salvar.jpeg" },
+                { "name": "conheco_um_coracao", "type": "pdf", "path": "Letras/2 - Ato penitencial/conheco_um_coracao.pdf" },
+                { "name": "coracoes_arrependidos", "type": "pdf", "path": "Letras/2 - Ato penitencial/coracoes_arrependidos.pdf" },
+                { "name": "kyrie_eleison_jmj", "type": "pdf", "path": "Letras/2 - Ato penitencial/kyrie_eleison_jmj.pdf" },
+                { "name": "pelos_pecados_senhor_piedade_de_nos", "type": "pdf", "path": "Letras/2 - Ato penitencial/pelos_pecados_senhor_piedade_de_nos.pdf" },
+                { "name": "perdao_senhor", "type": "pdf", "path": "Letras/2 - Ato penitencial/perdao_senhor.pdf" },
+                { "name": "renovame", "type": "pdf", "path": "Letras/2 - Ato penitencial/renovame.pdf" },
+                { "name": "renovame_ii", "type": "pdf", "path": "Letras/2 - Ato penitencial/renovame_ii.pdf" },
+                { "name": "senhor_que_viestes_salvar_kirie_elleisson", "type": "pdf", "path": "Letras/2 - Ato penitencial/senhor_que_viestes_salvar_kirie_elleisson.pdf" },
+                { "name": "senhor_tende_piedade_de_nos", "type": "pdf", "path": "Letras/2 - Ato penitencial/senhor_tende_piedade_de_nos.pdf" },
+                { "name": "senhor_tende_piedade_perdoai_nossa_culpa", "type": "pdf", "path": "Letras/2 - Ato penitencial/senhor_tende_piedade_perdoai_nossa_culpa.pdf" }
             ],
             "3 - Gloria": [
-                "Glória - Eliana Ribeiro",
-                "a_ele_seja_a_gloria",
-                "gloria_a_deus_nas_alturas",
-                "gloria_a_deus_nas_alturas__rock_balada",
-                "gloria_ao_pai_criador"
+                { "name": "Gloria a Deus nas alturas - Continuação", "type": "jpeg", "path": "Letras/3 - Gloria/Gloria a Deus nas alturas - Continuação.jpeg" },
+                { "name": "Gloria a Deus nas alturas", "type": "jpeg", "path": "Letras/3 - Gloria/Gloria a Deus nas alturas.jpeg" },
+                { "name": "Glória - Eliana Ribeiro", "type": "pdf", "path": "Letras/3 - Gloria/Glória - Eliana Ribeiro.pdf" },
+                { "name": "a_ele_seja_a_gloria", "type": "pdf", "path": "Letras/3 - Gloria/a_ele_seja_a_gloria.pdf" },
+                { "name": "gloria_a_deus_nas_alturas", "type": "pdf", "path": "Letras/3 - Gloria/gloria_a_deus_nas_alturas.pdf" },
+                { "name": "gloria_a_deus_nas_alturas__rock_balada", "type": "pdf", "path": "Letras/3 - Gloria/gloria_a_deus_nas_alturas__rock_balada.pdf" },
+                { "name": "gloria_ao_pai_criador", "type": "pdf", "path": "Letras/3 - Gloria/gloria_ao_pai_criador.pdf" }
             ],
             "4 - Aclamação ao evangelho": [
-                "a_minhalma_abrirei",
-                "a_vossa_palavra_senhor",
-                "aleluia_como_o_pai_me_amou",
-                "buscai_primeiro_o_reino_de_deus",
-                "como_sao_belos",
-                "eu_vim_para_escutar",
-                "palavra_de_salvacao",
-                "quando_estamos_unidos",
-                "que_alegria_cristo_ressurgiu",
-                "vai_falar_no_evangelho",
-                "vinde_espirito_de_deus"
+                { "name": "a_minhalma_abrirei", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/a_minhalma_abrirei.pdf" },
+                { "name": "a_vossa_palavra_senhor", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/a_vossa_palavra_senhor.pdf" },
+                { "name": "aleluia_como_o_pai_me_amou", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/aleluia_como_o_pai_me_amou.pdf" },
+                { "name": "buscai_primeiro_o_reino_de_deus", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/buscai_primeiro_o_reino_de_deus.pdf" },
+                { "name": "como_sao_belos", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/como_sao_belos.pdf" },
+                { "name": "eu_vim_para_escutar", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/eu_vim_para_escutar.pdf" },
+                { "name": "palavra_de_salvacao", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/palavra_de_salvacao.pdf" },
+                { "name": "quando_estamos_unidos", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/quando_estamos_unidos.pdf" },
+                { "name": "que_alegria_cristo_ressurgiu", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/que_alegria_cristo_ressurgiu.pdf" },
+                { "name": "vai_falar_no_evangelho", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/vai_falar_no_evangelho.pdf" },
+                { "name": "vinde_espirito_de_deus", "type": "pdf", "path": "Letras/4 - Aclamação ao evangelho/vinde_espirito_de_deus.pdf" }
             ],
             "5 - Ofertório": [
-                "a_mesa_santa_que_preparamos",
-                "de_maos_estendidas",
-                "meu_coracao_eh_para_ti",
-                "minha_vida_tem_sentido",
-                "muitos_graos_de_trigo",
-                "ofertas_singelas",
-                "sabes_senhor",
-                "um_coracao_para_amar"
+                { "name": "a_mesa_santa_que_preparamos", "type": "pdf", "path": "Letras/5 - Ofertório/a_mesa_santa_que_preparamos.pdf" },
+                { "name": "de_maos_estendidas", "type": "pdf", "path": "Letras/5 - Ofertório/de_maos_estendidas.pdf" },
+                { "name": "meu_coracao_eh_para_ti", "type": "pdf", "path": "Letras/5 - Ofertório/meu_coracao_eh_para_ti.pdf" },
+                { "name": "minha_vida_tem_sentido", "type": "pdf", "path": "Letras/5 - Ofertório/minha_vida_tem_sentido.pdf" },
+                { "name": "muitos_graos_de_trigo", "type": "pdf", "path": "Letras/5 - Ofertório/muitos_graos_de_trigo.pdf" },
+                { "name": "ofertas_singelas", "type": "pdf", "path": "Letras/5 - Ofertório/ofertas_singelas.pdf" },
+                { "name": "os_dons_que_trago_aqui", "type": "jpeg", "path": "Letras/5 - Ofertório/os_dons_que_trago_aqui.jpeg" },
+                { "name": "sabes_senhor", "type": "pdf", "path": "Letras/5 - Ofertório/sabes_senhor.pdf" },
+                { "name": "um_coracao_para_amar", "type": "pdf", "path": "Letras/5 - Ofertório/um_coracao_para_amar.pdf" }
             ],
             "6 - Santo": [
-                "hosana_eh",
-                "hosana_no_alto_ceu",
-                "o_senhor_eh_santo",
-                "santo_santo_e",
-                "senhor_deus_do_universo"
+                { "name": "hosana_eh", "type": "pdf", "path": "Letras/6 - Santo/hosana_eh.pdf" },
+                { "name": "hosana_no_alto_ceu", "type": "pdf", "path": "Letras/6 - Santo/hosana_no_alto_ceu.pdf" },
+                { "name": "o_senhor_eh_santo", "type": "pdf", "path": "Letras/6 - Santo/o_senhor_eh_santo.pdf" },
+                { "name": "santo_santo_e", "type": "pdf", "path": "Letras/6 - Santo/santo_santo_e.pdf" },
+                { "name": "santo_santo_santo_eh_o_senhor", "type": "jpeg", "path": "Letras/6 - Santo/santo_santo_santo_eh_o_senhor.jpeg" },
+                { "name": "senhor_deus_do_universo", "type": "pdf", "path": "Letras/6 - Santo/senhor_deus_do_universo.pdf" }
             ],
             "7 - Comunhão": [
-                "a_barca",
-                "a_ti_meu_deus",
-                "antes_da_morte_e_ressurreicao",
-                "cantar_a_beleza_da_vida",
-                "como_es_lindo",
-                "conheço_um_coração",
-                "da_cepa_brotou_a_rama",
-                "desamarrem_as_sandalias",
-                "estas_entre_nos",
-                "este_pranto_em_minhas_maos",
-                "eu_navegarei",
-                "eu_quis_comer_esta_ceia_agora",
-                "eu_vim_para_que_todos_tenham_vida",
-                "pelos_prados",
-                "procuro_abrigo_nos_coracoes",
-                "quando_teu_pai_revelou",
-                "quem_nos_separara",
-                "sacramento_da_comunhao",
-                "sim_eu_quero",
-                "sonda_me",
-                "vem_eu_mostrarei",
-                "vou_cantar_teu_amor"
+                { "name": "a_barca", "type": "pdf", "path": "Letras/7 - Comunhão/a_barca.pdf" },
+                { "name": "a_ti_meu_deus", "type": "pdf", "path": "Letras/7 - Comunhão/a_ti_meu_deus.pdf" },
+                { "name": "antes_da_morte_e_ressurreicao", "type": "pdf", "path": "Letras/7 - Comunhão/antes_da_morte_e_ressurreicao.pdf" },
+                { "name": "cantar_a_beleza_da_vida", "type": "pdf", "path": "Letras/7 - Comunhão/cantar_a_beleza_da_vida.pdf" },
+                { "name": "como_es_lindo", "type": "pdf", "path": "Letras/7 - Comunhão/como_es_lindo.pdf" },
+                { "name": "conheço_um_coração", "type": "pdf", "path": "Letras/7 - Comunhão/conheço_um_coração.pdf" },
+                { "name": "da_cepa_brotou_a_rama", "type": "pdf", "path": "Letras/7 - Comunhão/da_cepa_brotou_a_rama.pdf" },
+                { "name": "desamarrem_as_sandalias", "type": "pdf", "path": "Letras/7 - Comunhão/desamarrem_as_sandalias.pdf" },
+                { "name": "eis_que_sou_o_pao_da_vida", "type": "jpeg", "path": "Letras/7 - Comunhão/eis_que_sou_o_pao_da_vida.jpeg" },
+                { "name": "estas_entre_nos", "type": "pdf", "path": "Letras/7 - Comunhão/estas_entre_nos.pdf" },
+                { "name": "este_pranto_em_minhas_maos", "type": "pdf", "path": "Letras/7 - Comunhão/este_pranto_em_minhas_maos.pdf" },
+                { "name": "eu_navegarei", "type": "pdf", "path": "Letras/7 - Comunhão/eu_navegarei.pdf" },
+                { "name": "eu_quis_comer_esta_ceia_agora", "type": "pdf", "path": "Letras/7 - Comunhão/eu_quis_comer_esta_ceia_agora.pdf" },
+                { "name": "eu_vim_para_que_todos_tenham_vida", "type": "pdf", "path": "Letras/7 - Comunhão/eu_vim_para_que_todos_tenham_vida.pdf" },
+                { "name": "pelos_prados", "type": "pdf", "path": "Letras/7 - Comunhão/pelos_prados.pdf" },
+                { "name": "procuro_abrigo_nos_coracoes", "type": "pdf", "path": "Letras/7 - Comunhão/procuro_abrigo_nos_coracoes.pdf" },
+                { "name": "quando_teu_pai_revelou", "type": "pdf", "path": "Letras/7 - Comunhão/quando_teu_pai_revelou.pdf" },
+                { "name": "quem_nos_separara", "type": "pdf", "path": "Letras/7 - Comunhão/quem_nos_separara.pdf" },
+                { "name": "sacramento_da_comunhao", "type": "pdf", "path": "Letras/7 - Comunhão/sacramento_da_comunhao.pdf" },
+                { "name": "sim_eu_quero", "type": "pdf", "path": "Letras/7 - Comunhão/sim_eu_quero.pdf" },
+                { "name": "sonda_me", "type": "pdf", "path": "Letras/7 - Comunhão/sonda_me.pdf" },
+                { "name": "todo_aquele_que_comer", "type": "jpeg", "path": "Letras/7 - Comunhão/todo_aquele_que_comer.jpeg" },
+                { "name": "vem_eu_mostrarei", "type": "pdf", "path": "Letras/7 - Comunhão/vem_eu_mostrarei.pdf" },
+                { "name": "vou_cantar_teu_amor", "type": "pdf", "path": "Letras/7 - Comunhão/vou_cantar_teu_amor.pdf" }
             ],
             "8 - Ação de Graças": [
-                "deus_esta_aqui",
-                "e_impossivel_nao_crer_em_ti",
-                "espirito_santo",
-                "obrigado_senhor"
+                { "name": "deus_esta_aqui", "type": "pdf", "path": "Letras/8 - Ação de Graças/deus_esta_aqui.pdf" },
+                { "name": "e_impossivel_nao_crer_em_ti", "type": "pdf", "path": "Letras/8 - Ação de Graças/e_impossivel_nao_crer_em_ti.pdf" },
+                { "name": "espirito_santo", "type": "pdf", "path": "Letras/8 - Ação de Graças/espirito_santo.pdf" },
+                { "name": "obrigado_senhor", "type": "pdf", "path": "Letras/8 - Ação de Graças/obrigado_senhor.pdf" },
+                { "name": "so_em_ti", "type": "jpeg", "path": "Letras/8 - Ação de Graças/so_em_ti.jpeg" }
             ],
             "9 - Final": [
-                "a_alegria_esta_no_coracao",
-                "como_o_pai_me_enviou",
-                "cristo_eh_a_felicidade",
-                "deixa_luz_do_ceu_entrar",
-                "hoje_e_tempo_de_louvar",
-                "pelas_estradas_da_vida",
-                "segura_na_mao_de_deus",
-                "tomado_pela_mao",
-                "tu_es_razao_jornada"
+                { "name": "a_alegria_esta_no_coracao", "type": "pdf", "path": "Letras/9 - Final/a_alegria_esta_no_coracao.pdf" },
+                { "name": "como_o_pai_me_enviou", "type": "pdf", "path": "Letras/9 - Final/como_o_pai_me_enviou.pdf" },
+                { "name": "cristo_eh_a_felicidade", "type": "pdf", "path": "Letras/9 - Final/cristo_eh_a_felicidade.pdf" },
+                { "name": "deixa_luz_do_ceu_entrar", "type": "pdf", "path": "Letras/9 - Final/deixa_luz_do_ceu_entrar.pdf" },
+                { "name": "hoje_e_tempo_de_louvar", "type": "pdf", "path": "Letras/9 - Final/hoje_e_tempo_de_louvar.pdf" },
+                { "name": "pelas_estradas_da_vida", "type": "pdf", "path": "Letras/9 - Final/pelas_estradas_da_vida.pdf" },
+                { "name": "segura_na_mao_de_deus", "type": "pdf", "path": "Letras/9 - Final/segura_na_mao_de_deus.pdf" },
+                { "name": "tomado_pela_mao", "type": "pdf", "path": "Letras/9 - Final/tomado_pela_mao.pdf" },
+                { "name": "tu_es_razao_jornada", "type": "pdf", "path": "Letras/9 - Final/tu_es_razao_jornada.pdf" }
             ],
             "10 - Abraço de Paz": [
-                "esteja_sempre_com_voce",
-                "irmao_minha_paz_eu_te_dou",
-                "paz_paz_de_cristo"
+                { "name": "esteja_sempre_com_voce", "type": "pdf", "path": "Letras/10 - Abraço de Paz/esteja_sempre_com_voce.pdf" },
+                { "name": "irmao_minha_paz_eu_te_dou", "type": "pdf", "path": "Letras/10 - Abraço de Paz/irmao_minha_paz_eu_te_dou.pdf" },
+                { "name": "paz_paz_de_cristo", "type": "pdf", "path": "Letras/10 - Abraço de Paz/paz_paz_de_cristo.pdf" }
             ],
             "15 - Abraço de Paz": [
-                "quero_te_dar_a_paz"
+                { "name": "quero_te_dar_a_paz", "type": "pdf", "path": "Letras/15 - Abraço de Paz/quero_te_dar_a_paz.pdf" }
             ],
             "16 - Cordeiro": [
-                "cordeiro_de_deus"
+                { "name": "cordeiro_de_deus", "type": "pdf", "path": "Letras/16 - Cordeiro/cordeiro_de_deus.pdf" }
             ],
             "11 - Canticos Marianos": [
-                "a_escolhida",
-                "ave_cheia_de_graca",
-                "imaculada_maria_de_deus",
-                "maria_de_nazare",
-                "santa_mae_maria",
-                "santa_maria_vem"
+                { "name": "a_escolhida", "type": "pdf", "path": "Letras/11 - Canticos Marianos/a_escolhida.pdf" },
+                { "name": "ave_cheia_de_graca", "type": "pdf", "path": "Letras/11 - Canticos Marianos/ave_cheia_de_graca.pdf" },
+                { "name": "imaculada_maria_de_deus", "type": "pdf", "path": "Letras/11 - Canticos Marianos/imaculada_maria_de_deus.pdf" },
+                { "name": "maria_de_nazare", "type": "pdf", "path": "Letras/11 - Canticos Marianos/maria_de_nazare.pdf" },
+                { "name": "santa_mae_maria", "type": "pdf", "path": "Letras/11 - Canticos Marianos/santa_mae_maria.pdf" },
+                { "name": "santa_maria_vem", "type": "pdf", "path": "Letras/11 - Canticos Marianos/santa_maria_vem.pdf" }
             ],
             "12 - Louvor e meditação": [
-                "Desamarrem_as_sandálias",
-                "a_alegria_esta_no_coracao",
-                "a_nos_descei_divina_luz",
-                "agua_viva",
-                "amar_como_jesus_amou",
-                "bate_o_sino",
-                "eu_louvarei",
-                "eu_quero_um_rio",
-                "louvado_seja_o_meu_senhor",
-                "meu_mestre__a_minha_vida_e_do_mestre",
-                "noite_feliz",
-                "noites_traicoeiras",
-                "oracao_da_familia",
-                "oracao_de_sao_francisco",
-                "podes_reinar",
-                "quao_grande_es_tu",
-                "segura_na_mao_de_deus",
-                "tao_sublime",
-                "vou-cantar-teu-amor"
+                { "name": "Desamarrem_as_sandálias", "type": "pdf", "path": "Letras/12 - Louvor e meditação/Desamarrem_as_sandálias.pdf" },
+                { "name": "a_alegria_esta_no_coracao", "type": "pdf", "path": "Letras/12 - Louvor e meditação/a_alegria_esta_no_coracao.pdf" },
+                { "name": "a_nos_descei_divina_luz", "type": "pdf", "path": "Letras/12 - Louvor e meditação/a_nos_descei_divina_luz.pdf" },
+                { "name": "agua_viva", "type": "pdf", "path": "Letras/12 - Louvor e meditação/agua_viva.pdf" },
+                { "name": "amar_como_jesus_amou", "type": "pdf", "path": "Letras/12 - Louvor e meditação/amar_como_jesus_amou.pdf" },
+                { "name": "bate_o_sino", "type": "pdf", "path": "Letras/12 - Louvor e meditação/bate_o_sino.pdf" },
+                { "name": "eu_louvarei", "type": "pdf", "path": "Letras/12 - Louvor e meditação/eu_louvarei.pdf" },
+                { "name": "eu_quero_um_rio", "type": "pdf", "path": "Letras/12 - Louvor e meditação/eu_quero_um_rio.pdf" },
+                { "name": "louvado_seja_o_meu_senhor", "type": "pdf", "path": "Letras/12 - Louvor e meditação/louvado_seja_o_meu_senhor.pdf" },
+                { "name": "meu_mestre__a_minha_vida_e_do_mestre", "type": "pdf", "path": "Letras/12 - Louvor e meditação/meu_mestre__a_minha_vida_e_do_mestre.pdf" },
+                { "name": "noite_feliz", "type": "pdf", "path": "Letras/12 - Louvor e meditação/noite_feliz.pdf" },
+                { "name": "noites_traicoeiras", "type": "pdf", "path": "Letras/12 - Louvor e meditação/noites_traicoeiras.pdf" },
+                { "name": "oracao_da_familia", "type": "pdf", "path": "Letras/12 - Louvor e meditação/oracao_da_familia.pdf" },
+                { "name": "oracao_de_sao_francisco", "type": "pdf", "path": "Letras/12 - Louvor e meditação/oracao_de_sao_francisco.pdf" },
+                { "name": "podes_reinar", "type": "pdf", "path": "Letras/12 - Louvor e meditação/podes_reinar.pdf" },
+                { "name": "quao_grande_es_tu", "type": "pdf", "path": "Letras/12 - Louvor e meditação/quao_grande_es_tu.pdf" },
+                { "name": "segura_na_mao_de_deus", "type": "pdf", "path": "Letras/12 - Louvor e meditação/segura_na_mao_de_deus.pdf" },
+                { "name": "tao_sublime", "type": "pdf", "path": "Letras/12 - Louvor e meditação/tao_sublime.pdf" },
+                { "name": "vou-cantar-teu-amor", "type": "pdf", "path": "Letras/12 - Louvor e meditação/vou-cantar-teu-amor.pdf" }
             ],
             "13 - Diversos": [
-                "Consagração a nossa senhora",
-                "podes_reinar",
-                "prova_de_amor",
-                "tudo_e_do_pai"
+                { "name": "Consagração a nossa senhora", "type": "pdf", "path": "Letras/13 - Diversos/Consagração a nossa senhora.pdf" },
+                { "name": "podes_reinar", "type": "pdf", "path": "Letras/13 - Diversos/podes_reinar.pdf" },
+                { "name": "prova_de_amor", "type": "pdf", "path": "Letras/13 - Diversos/prova_de_amor.pdf" },
+                { "name": "tudo_e_do_pai", "type": "pdf", "path": "Letras/13 - Diversos/tudo_e_do_pai.pdf" }
             ],
             "14 - Salmos": [
-                "salmo 137"
+                { "name": "salmo 137", "type": "pdf", "path": "Letras/14 - Salmos/salmo 137.pdf" }
             ]
         };
 
         // Inicializar a aplicação
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener("DOMContentLoaded", function() {
             generateSections();
             setupEventListeners();
         });
 
         function generateSections() {
-            const container = document.getElementById('sectionsContainer');
+            const container = document.getElementById("sectionsContainer");
             
             sections.sort((a, b) => a.order - b.order).forEach(section => {
-                const sectionCard = document.createElement('div');
-                sectionCard.className = 'section-card';
+                const sectionCard = document.createElement("div");
+                sectionCard.className = "section-card";
                 sectionCard.innerHTML = `
                     <div class="section-header" onclick="toggleSection('${section.id}')">
                         <div class="section-title">${section.name}</div>
@@ -730,12 +739,12 @@
             const content = document.getElementById(`content-${sectionId}`);
             const toggle = document.getElementById(`toggle-${sectionId}`);
             
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                toggle.textContent = '▼';
+            if (content.classList.contains("expanded")) {
+                content.classList.remove("expanded");
+                toggle.textContent = "▼";
             } else {
-                content.classList.add('expanded');
-                toggle.textContent = '▲';
+                content.classList.add("expanded");
+                toggle.textContent = "▲";
                 loadSongsForSection(sectionId);
             }
         }
@@ -754,47 +763,62 @@
             }
 
             songsContainer.innerHTML = songs.map(song => `
-                <div class="song-item" draggable="true" ondragstart="dragStart(event)" data-song="${song}" data-section="${sectionId}">
-                    <div class="song-name" onclick="openPDF('${sectionId}', '${song}')">${song.replace(/_/g, ' ')}</div>
-                    <div class="add-btn" onclick="addToMissa('${song}', '${sectionId}')">+</div>
+                <div class="song-item" draggable="true" ondragstart="dragStart(event)" data-song-name="${song.name}" data-section-id="${sectionId}" data-song-type="${song.type}" data-song-path="${song.path}">
+                    <div class="song-name" onclick="openFile('${song.path}', '${song.type}')">${song.name.replace(/_/g, " ")}</div>
+                    <div class="add-btn" onclick="addToMissa('${song.name}', '${sectionId}', '${song.type}', '${song.path}')">+</div>
                 </div>
-            `).join('');
+            `).join("");
         }
 
-        function openPDF(sectionId, songName) {
-            // Construir URL do PDF
-            const pdfUrl = `${baseUrl}${encodeURIComponent(sectionId)}/${encodeURIComponent(songName)}.pdf`;
+        function openFile(filePath, fileType) {
+            const fileViewerContainer = document.getElementById("fileViewerContainer");
+            fileViewerContainer.innerHTML = ""; // Limpa o conteúdo anterior
+
+            const fileUrl = `${baseUrl}${filePath}`;
             
-            // Abrir popup com PDF
-            document.getElementById('pdfViewer').src = pdfUrl;
-            document.getElementById('popupOverlay').style.display = 'flex';
+            if (fileType === "pdf") {
+                const iframe = document.createElement("iframe");
+                iframe.className = "file-viewer";
+                iframe.src = fileUrl;
+                fileViewerContainer.appendChild(iframe);
+            } else if (fileType === "jpeg" || fileType === "jpg") {
+                const img = document.createElement("img");
+                img.className = "file-viewer";
+                img.src = fileUrl;
+                img.style.objectFit = "contain";
+                fileViewerContainer.appendChild(img);
+            } else {
+                fileViewerContainer.innerHTML = `<p style="text-align: center; color: #ff0000;">Formato de arquivo não suportado: ${fileType}</p>`;
+            }
+            
+            document.getElementById("popupOverlay").style.display = "flex";
         }
 
         function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
-            document.getElementById('pdfViewer').src = '';
+            document.getElementById("popupOverlay").style.display = "none";
+            document.getElementById("fileViewerContainer").innerHTML = "";
         }
 
         function toggleMissaHoje() {
-            const missaHoje = document.getElementById('missaHoje');
-            missaHoje.classList.toggle('visible');
+            const missaHoje = document.getElementById("missaHoje");
+            missaHoje.classList.toggle("visible");
         }
 
-        function addToMissa(songName, sectionId) {
-            const missaList = document.getElementById('missaList');
+        function addToMissa(songName, sectionId, songType, songPath) {
+            const missaList = document.getElementById("missaList");
             
             // Remover mensagem de placeholder se existir
-            const placeholder = missaList.querySelector('p');
+            const placeholder = missaList.querySelector("p");
             if (placeholder) {
                 placeholder.remove();
             }
 
             // Criar item da missa
-            const missaItem = document.createElement('div');
-            missaItem.className = 'missa-item';
+            const missaItem = document.createElement("div");
+            missaItem.className = "missa-item";
             missaItem.innerHTML = `
-                <div onclick="openPDF('${sectionId}', '${songName}')" style="cursor: pointer; flex: 1;">
-                    ${songName.replace(/_/g, ' ')}
+                <div onclick="openFile('${songPath}', '${songType}')" style="cursor: pointer; flex: 1;">
+                    ${songName.replace(/_/g, " ")}
                 </div>
                 <div class="remove-btn" onclick="removeFromMissa(this)">×</div>
             `;
@@ -806,7 +830,7 @@
             button.parentElement.remove();
             
             // Se não há mais itens, mostrar placeholder
-            const missaList = document.getElementById('missaList');
+            const missaList = document.getElementById("missaList");
             if (missaList.children.length === 0) {
                 missaList.innerHTML = `
                     <p style="text-align: center; color: rgba(255,255,255,0.7); font-style: italic;">
@@ -817,18 +841,18 @@
         }
 
         function saveMissa() {
-            const missaItems = Array.from(document.querySelectorAll('.missa-item')).map(item => {
-                const text = item.querySelector('div').textContent.trim();
+            const missaItems = Array.from(document.querySelectorAll(".missa-item")).map(item => {
+                const text = item.querySelector("div").textContent.trim();
                 return text;
             });
             
-            localStorage.setItem('missaAtual', JSON.stringify(missaItems));
-            alert('Missa salva com sucesso!');
+            localStorage.setItem("missaAtual", JSON.stringify(missaItems));
+            alert("Missa salva com sucesso!");
         }
 
         function clearMissa() {
-            if (confirm('Tem certeza que deseja limpar a missa atual?')) {
-                document.getElementById('missaList').innerHTML = `
+            if (confirm("Tem certeza que deseja limpar a missa atual?")) {
+                document.getElementById("missaList").innerHTML = `
                     <p style="text-align: center; color: rgba(255,255,255,0.7); font-style: italic;">
                         Arraste os cânticos aqui para organizar a missa
                     </p>
@@ -837,18 +861,18 @@
         }
 
         function loadMissa() {
-            const savedMissa = localStorage.getItem('missaAtual');
+            const savedMissa = localStorage.getItem("missaAtual");
             if (savedMissa) {
                 const missaItems = JSON.parse(savedMissa);
-                const missaList = document.getElementById('missaList');
+                const missaList = document.getElementById("missaList");
                 
-                missaList.innerHTML = '';
+                missaList.innerHTML = "";
                 
                 missaItems.forEach(songName => {
-                    const missaItem = document.createElement('div');
-                    missaItem.className = 'missa-item';
+                    const missaItem = document.createElement("div");
+                    missaItem.className = "missa-item";
                     missaItem.innerHTML = `
-                        <div onclick="openPDF('', '${songName}')" style="cursor: pointer; flex: 1;">
+                        <div style="cursor: default; flex: 1;">
                             ${songName}
                         </div>
                         <div class="remove-btn" onclick="removeFromMissa(this)">×</div>
@@ -856,22 +880,22 @@
                     missaList.appendChild(missaItem);
                 });
                 
-                alert('Missa carregada com sucesso!');
+                alert("Missa carregada com sucesso!");
             } else {
-                alert('Nenhuma missa salva encontrada.');
+                alert("Nenhuma missa salva encontrada.");
             }
         }
 
         function setupEventListeners() {
             // Pesquisa
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
+            const searchInput = document.getElementById("searchInput");
+            const searchResults = document.getElementById("searchResults");
             
-            searchInput.addEventListener('input', function() {
+            searchInput.addEventListener("input", function() {
                 const query = this.value.toLowerCase().trim();
                 
                 if (query.length < 2) {
-                    searchResults.style.display = 'none';
+                    searchResults.style.display = "none";
                     return;
                 }
                 
@@ -879,83 +903,87 @@
                 const results = [];
                 Object.keys(songData).forEach(sectionId => {
                     songData[sectionId].forEach(song => {
-                        if (song.toLowerCase().includes(query)) {
-                            results.push({ song, sectionId });
+                        if (song.name.toLowerCase().includes(query)) {
+                            results.push({ songName: song.name, sectionId: sectionId, songType: song.type, songPath: song.path });
                         }
                     });
                 });
                 
                 if (results.length > 0) {
                     searchResults.innerHTML = results.map(result => `
-                        <div class="search-result-item" onclick="openPDF('${result.sectionId}', '${result.song}')">
-                            ${result.song.replace(/_/g, ' ')} <small>(${result.sectionId})</small>
+                        <div class="search-result-item" onclick="openFile('${result.songPath}', '${result.songType}')">
+                            ${result.songName.replace(/_/g, " ")} <small>(${sections.find(s => s.id === result.sectionId).name})</small>
                         </div>
-                    `).join('');
-                    searchResults.style.display = 'block';
+                    `).join("");
+                    searchResults.style.display = "block";
                 } else {
                     searchResults.innerHTML = '<div class="search-result-item">Nenhum resultado encontrado</div>';
-                    searchResults.style.display = 'block';
+                    searchResults.style.display = "block";
                 }
             });
             
             // Fechar resultados de pesquisa ao clicar fora
-            document.addEventListener('click', function(e) {
+            document.addEventListener("click", function(e) {
                 if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.style.display = 'none';
+                    searchResults.style.display = "none";
                 }
             });
             
             // Drag and Drop
-            const missaList = document.getElementById('missaList');
+            const missaList = document.getElementById("missaList");
             
-            missaList.addEventListener('dragover', function(e) {
+            missaList.addEventListener("dragover", function(e) {
                 e.preventDefault();
-                this.classList.add('drop-zone');
+                this.classList.add("drop-zone");
             });
             
-            missaList.addEventListener('dragleave', function(e) {
+            missaList.addEventListener("dragleave", function(e) {
                 if (!this.contains(e.relatedTarget)) {
-                    this.classList.remove('drop-zone');
+                    this.classList.remove("drop-zone");
                 }
             });
             
-            missaList.addEventListener('drop', function(e) {
+            missaList.addEventListener("drop", function(e) {
                 e.preventDefault();
-                this.classList.remove('drop-zone');
+                this.classList.remove("drop-zone");
                 
-                const songName = e.dataTransfer.getData('text/song');
-                const sectionId = e.dataTransfer.getData('text/section');
+                const songName = e.dataTransfer.getData("text/song-name");
+                const sectionId = e.dataTransfer.getData("text/section-id");
+                const songType = e.dataTransfer.getData("text/song-type");
+                const songPath = e.dataTransfer.getData("text/song-path");
                 
-                if (songName && sectionId) {
-                    addToMissa(songName, sectionId);
+                if (songName && sectionId && songType && songPath) {
+                    addToMissa(songName, sectionId, songType, songPath);
                 }
             });
 
             // Fechar Missa de Hoje ao clicar fora
-            document.addEventListener('click', function(e) {
-                const missaHoje = document.getElementById('missaHoje');
-                const missaToggle = document.getElementById('missaHojeToggle');
+            document.addEventListener("click", function(e) {
+                const missaHoje = document.getElementById("missaHoje");
+                const missaToggle = document.getElementById("missaHojeToggle");
                 
-                if (missaHoje.classList.contains('visible') && 
+                if (missaHoje.classList.contains("visible") && 
                     !missaHoje.contains(e.target) && 
                     !missaToggle.contains(e.target)) {
-                    missaHoje.classList.remove('visible');
+                    missaHoje.classList.remove("visible");
                 }
             });
         }
 
         function dragStart(e) {
-            e.target.classList.add('dragging');
-            e.dataTransfer.setData('text/song', e.target.dataset.song);
-            e.dataTransfer.setData('text/section', e.target.dataset.section);
+            e.target.classList.add("dragging");
+            e.dataTransfer.setData("text/song-name", e.target.dataset.songName);
+            e.dataTransfer.setData("text/section-id", e.target.dataset.sectionId);
+            e.dataTransfer.setData("text/song-type", e.target.dataset.songType);
+            e.dataTransfer.setData("text/song-path", e.target.dataset.songPath);
             
             setTimeout(() => {
-                e.target.classList.remove('dragging');
+                e.target.classList.remove("dragging");
             }, 0);
         }
 
         // Fechar popup ao clicar fora
-        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+        document.getElementById("popupOverlay").addEventListener("click", function(e) {
             if (e.target === this) {
                 closePopup();
             }
